@@ -1,0 +1,9 @@
+<a href="{{ item.link }}" class="tease tease-{{ item.post_type }} {{ cssClasses|default('') }}">
+    <div class="tease__image-wrapper tease-{{item.post_type}}__image-wrapper">
+        <img src="{{ item.thumbnail('placeholder_image').src|resize(600, 350, 'center') }}" alt="{{ item.thumbnail('placeholder_image').alt }}" title="{{ item.thumbnail('placeholder_image').title }}" class="tease__image tease-{{ item.post_type }}__image" />
+    </div>
+
+    <div class="tease__content-wrapper tease-{{ item.post_type }}__content-wrapper">
+        <p class="bold tease__title tease-{{ item.post_type }}__title">{{ item.title }}</p>
+    </div>
+</a>

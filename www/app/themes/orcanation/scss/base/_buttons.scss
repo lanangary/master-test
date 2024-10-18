@@ -1,0 +1,32 @@
+.btn {
+    display: inline-block;
+    border: 0;
+    background: none;
+    color: $white;
+    background-color: theme-color('primary');
+    border-radius: $border-radius-default;
+    font-weight: $btn-font-weight;
+    transition: $transition-default;
+    text-align: center;
+    line-height: 1;
+    padding: $btn-padding-y $btn-padding-x;
+
+    @include on-event() {
+        background-color: darken(theme-color('primary'), 10%);
+        color: $white;
+    }
+
+    &[disabled] {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+
+    & + .btn-block {
+        margin-top: $padding;
+    }
+}

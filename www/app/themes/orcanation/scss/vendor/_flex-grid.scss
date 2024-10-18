@@ -1,0 +1,153 @@
+@use "sass:math";
+
+// Grid system, based off bootstrap.
+// Only add .col once then add sizing/offset/order classes.
+// See _mixins.scss for grid mixin.
+// e.g. <div class="col xs-6 sm-12 sm-order-1"></div>
+
+$flex-direction-props: (row, row-reverse, column, column-reverse) !default;
+// Add more properties if you need them.
+//$flex-direction-props: (row, row-reverse, column, column-reverse) !default;
+$flex-wrap-props: (nowrap, wrap, wrap-reverse) !default;
+$flex-justify-props: (flex-start, flex-end, center, space-between, space-around) !default;
+$flex-align-items-props: (center) !default;
+// Add more properties if you need them.
+//$flex-align-items-props: (flex-start, flex-end, center, baseline, stretch) !default;
+$flex-align-content-props: (center) !default;
+// Add more properties if you need them.
+//$flex-align-content-props: (flex-start, flex-end, center, space-between, space-around, stretch);
+$flex-grow-props: (0, 1) !default;
+$flex-shrink-props: (0, 1) !default;
+
+.container {
+    width: 100%;
+    max-width: map-get($grid-breakpoints, 'xl');
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: floor($grid-gutter-width);
+    padding-right: ceil($grid-gutter-width);
+
+    @include mq(map-get($grid-breakpoints, 'xl')) {
+        padding-left: floor(math.div($grid-gutter-width, 2));
+        padding-right: ceil(math.div($grid-gutter-width, 2));
+    }
+
+    &.no-max {
+        max-width: none;
+    }
+}
+
+.col {
+    padding-left: math.div($grid-gutter-width, 2);
+    padding-right: math.div($grid-gutter-width, 2);
+    flex-basis: 100%;
+    flex-grow: 1;
+    max-width: 100%;
+    min-height: 1px;
+    position: relative;
+
+    @for $i from 1 through length($mq-breakpoints) {
+        $break-at: nth($mq-breakpoints, $i);
+        $title: nth($break-at, 1);
+
+        @if ($i != 1) {
+            @include mq($title) {
+                &.#{$title}-no-padding {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+            }
+        } @else {
+            &.no-padding {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            @include mq($until: xs) {
+                &.xs-no-padding {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@for $i from 1 through length($mq-breakpoints) {
+    $break-at: nth($mq-breakpoints, $i);
+    $title: nth($break-at, 1);
+
+    .hidden-until-#{$title} {
+        @include mq($until: $title) {
+            display: none !important;
+        }
+    }
+
+    .hidden-from-#{$title} {
+        @include mq($title) {
+            display: none !important;
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: ceil(math.div(-$grid-gutter-width, 2));
+    margin-right: floor(math.div(-$grid-gutter-width, 2));
+}
+
+.row.reverse {
+    flex-direction: row-reverse;
+}
+
+// add to .row to remove its gutter, and the padding from its direct child .col's
+.no-gutter {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@for $i from 1 through length($mq-breakpoints) {
+    $break-at: nth($mq-breakpoints, $i);
+    $title: nth($break-at, 1);
+
+    @if ($i != 1) {
+        @include mq($title) {
+            @include flex-grid($title);
+        }
+    } @else {
+        @include flex-grid($title);
+    }
+}
+
+// ************************
+//      Helper classes
+// ************************
+
+// Direction
+@include flex-helper('flex-direction', 'flex-dir', $flex-direction-props);
+
+// Wrap
+@include flex-helper('flex-wrap', 'flex-wrap', $flex-wrap-props);
+
+// Justify Content
+@include flex-helper('justify-content', 'justify', $flex-justify-props);
+
+// Align Items
+@include flex-helper('align-items', 'align-items', $flex-align-items-props);
+
+// Align Content
+@include flex-helper('align-content', 'align-content', $flex-align-content-props);
+
+// Grow
+@include flex-helper('flex-grow', 'flex-grow', $flex-grow-props);
+
+// Shrink
+@include flex-helper('flex-shrink', 'flex-shrink', $flex-shrink-props);

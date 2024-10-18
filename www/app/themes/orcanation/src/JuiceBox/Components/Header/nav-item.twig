@@ -1,0 +1,30 @@
+<li class="nav__item nav__item--{{ level }} {{ item.class }}">
+	<a href="{{ item.link }}" class="nav__link">
+		<span class="nav__title">{{ item }}</span>
+
+		{% if item.children is not empty %}
+			{% if isicon %}
+				{{ svg_icon('header-icon/plus') }}
+			{% endif %}
+		{% else %}
+			{% if isicon %}
+				{{ svg_icon('header-icon/arrow-degree') }}
+			{% endif %}
+		{% endif %}
+	</a>
+	{% if item.children is not empty %}
+		<ul class="nav__submenu">
+			{% for child in item.children %}
+				{%
+                    include 'Header/nav-item.twig' with {
+                        item: child,
+                        level: level + 1,
+                        isicon: false
+                    }
+                %}
+			{% endfor %}
+		</ul>
+
+
+	{% endif %}
+</li>

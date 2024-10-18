@@ -1,0 +1,96 @@
+<header class="header flex flex-dir-column justify-center" id="main-header">
+	<div class="container">
+		<div class="header-wrap">
+			<div class="header-wrap-item">
+				<div class="header-wrap-item-logo">
+					<a href="{{ site.url }}" class="text-hide block header__logo">
+						{{ svg_icon('logo') }}
+					</a>
+				</div>
+			</div>
+			<div class="header-wrap-item">
+				<div class="header-wrap-item-menu">
+					<nav class="header-wrap-item-menu-item" id="main-nav" aria-label="Main navigation">
+						{% include 'Header/nav.twig' with {
+                            menu: theme_menus.header_menu
+                        } only %}
+					</nav>
+					<div class="header-wrap-item-menu-item-button">
+						<button class="header-wrap-item-menu-item-button-toogle" type="button">{{ svg_icon('header-icon/menu') }}</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="header-slide" id="header-slide-wrap">
+		<img class="header-slide-bg" src="{{ site.theme.link }}/img/header-icon/bg.jpg" alt="{{ site.name }} menu">
+		<div class="header-slide-wrap">
+			<div class="header-slide-top">
+				<div class="header-slide-top-logo">
+					<a href="{{ site.url }}" class="text-hide block header__logo">
+						{{ svg_icon('logo') }}
+					</a>
+				</div>
+				<div class="header-slide-top-close">
+					<button class="header-slide-top-close-toogle" type="button">{{ svg_icon('header-icon/close-toogle') }}</button>
+				</div>
+			</div>
+			<div class="header-slide-main">
+				<div class="header-slide-main-menu">
+					{% include 'Header/nav.twig' with {
+                        menu: theme_menus.header_menu_slide,
+                        isicon: true
+                    } only %}
+				</div>
+				<div class="header-slide-main-menu">
+					<div class="header-slide-main-menu-item">
+						<div class="header-slide-main-menu-item-title">
+							Join our Outdoor Education Programs?
+						</div>
+						<div class="header-slide-main-menu-item-url">
+							<a href="#">
+								Contact Education Outdoor
+							</a>
+							<i>
+								{{ svg_icon('header-icon/arrow-right') }}
+							</i>
+						</div>
+					</div>
+					<div class="header-slide-main-menu-item">
+						<div class="header-slide-main-menu-item-title">
+							Join our Outdoor Education Programs?
+						</div>
+						<div class="header-slide-main-menu-item-url">
+							<a href="#">
+								Contact Education Outdoor
+							</a>
+							<i>
+								{{ svg_icon('header-icon/arrow-right') }}
+							</i>
+						</div>
+					</div>
+					<div class="header-slide-main-menu-item">
+						<div class="header-slide-main-menu-item-title">
+							Join our Outdoor Education Programs?
+						</div>
+						<div class="header-slide-main-menu-item-url">
+							<a href="#">
+								Contact Education Outdoor
+							</a>
+							<i>
+								{{ svg_icon('header-icon/arrow-right') }}
+							</i>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	{{ appendHeader }}
+</header>

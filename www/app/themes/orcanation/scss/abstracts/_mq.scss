@@ -1,0 +1,32 @@
+// To enable support for browsers that do not support @media queries,
+// (IE <= 8, Firefox <= 3, Opera <= 9) set $mq-responsive to false
+// Create a separate stylesheet served exclusively to these browsers,
+// meaning @media queries will be rasterized, relying on the cascade itself
+$mq-responsive: true;
+
+/* Additional Breakpoints */
+$mobile-menu-break: map-get($grid-breakpoints, 'md');
+
+// Name your breakpoints in a way that creates a ubiquitous language
+// across team members. It will improve communication between
+// stakeholders, designers, developers, and testers.
+$mq-breakpoints: (
+    xs: map-get($grid-breakpoints, 'xs'),
+    sm: map-get($grid-breakpoints, 'sm'),
+    md: map-get($grid-breakpoints, 'md'),
+    lg: map-get($grid-breakpoints, 'lg'),
+    xl: map-get($grid-breakpoints, 'xl'),
+    mobile-menu-break: $mobile-menu-break
+);
+
+// Define the breakpoint from the $mq-breakpoints list that should
+// be used as the target width when outputting a static stylesheet
+// (i.e. when $mq-responsive is set to 'false').
+$mq-static-breakpoint: lg;
+
+// If you want to display the currently active breakpoint in the top
+// right corner of your site during development, add the breakpoints
+// to this list, ordered by width, e.g. (mobile, tablet, desktop).
+// $mq-show-breakpoints: (mobile, tablet, desktop, large);
+
+@import 'node_modules/sass-mq/mq';

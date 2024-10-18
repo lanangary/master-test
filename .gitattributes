@@ -1,0 +1,234 @@
+## GITATTRIBUTES FOR WEB PROJECTS
+#
+# Details per file setting:
+#   text    These files should be normalized (i.e. convert CRLF to LF).
+#   binary  These files are binary and should be left untouched.
+#
+# @ref https://github.com/alexkaratarakis/gitattributes
+######################################################################
+
+## IGNORE FILES
+## When composer installs your package (with --prefer-dist) it
+## will pull down a zip file and extract it. "export-ignore"
+## allows us to exclude files and folders in that zip file.
+
+/.circleci export-ignore
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.scrutinizer.yml export-ignore
+/.travis.yml export-ignore
+/changelog.md export-ignore
+/phpcs.xml export-ignore
+/phpunit.xml export-ignore
+/readme.md export-ignore
+/stubs export-ignore
+/tests export-ignore
+
+## AUTO-DETECT
+##   Handle line endings automatically for files detected as
+##   text and leave all files detected as binary untouched.
+##   Auto detect text files and perform LF normalization
+##   This will handle all files NOT defined below.
+* text=auto
+
+#
+# The above will handle all files NOT found below
+#
+
+## SOURCE CODE
+*.bash            text eol=lf
+*.bat             text eol=crlf
+*.cmd             text eol=crlf
+*.coffee          text
+*.css             text
+*.htm             text diff=html
+*.html            text diff=html
+*.inc             text
+*.ini             text
+*.js              text
+*.json            text
+*.jsx             text
+*.less            text
+*.ls              text
+*.map             text -diff
+*.od              text
+*.onlydata        text
+*.php             text diff=php
+*.pl              text
+*.ps1             text eol=crlf
+*.py              text diff=python
+*.rb              text diff=ruby
+*.sass            text
+*.scm             text
+*.scss            text diff=css
+*.sh              text eol=lf
+*.sql             text
+*.styl            text
+*.tag             text
+*.ts              text
+*.tsx             text
+*.xml             text
+*.xhtml           text diff=html
+
+## DOCKER
+*.dockerignore    text
+Dockerfile        text
+
+## DOCUMENTATION
+*.ipynb           text
+*.markdown        text
+*.md              text
+*.mdwn            text
+*.mdown           text
+*.mkd             text
+*.mkdn            text
+*.mdtxt           text
+*.mdtext          text
+*.txt             text
+AUTHORS           text
+CHANGELOG         text
+CHANGES           text
+CONTRIBUTING      text
+COPYING           text
+copyright         text
+*COPYRIGHT*       text
+INSTALL           text
+license           text
+LICENSE           text
+NEWS              text
+readme            text
+*README*          text
+TODO              text
+
+## TEMPLATES
+*.dot             text
+*.ejs             text
+*.haml            text
+*.handlebars      text
+*.hbs             text
+*.hbt             text
+*.jade            text
+*.latte           text
+*.mustache        text
+*.njk             text
+*.phtml           text
+*.tmpl            text
+*.tpl             text
+*.twig            text
+*.vue             text
+
+## LINTERS
+.csslintrc        text
+.eslintrc         text
+.htmlhintrc       text
+.jscsrc           text
+.jshintrc         text
+.jshintignore     text
+.stylelintrc      text
+
+## CONFIGS
+*.bowerrc         text
+*.cnf             text
+*.conf            text
+*.config          text
+.babelrc          text
+.browserslistrc   text
+.editorconfig     text
+.env              text
+.env.*            text
+.gitattributes    text
+.gitconfig        text
+.htaccess         text
+*.lock            text -diff
+package-lock.json text -diff
+*.npmignore       text
+*.yaml            text
+*.yml             text
+browserslist      text
+Makefile          text
+makefile          text
+
+## HEROKU
+Procfile          text
+.slugignore       text
+
+## GRAPHICS
+*.ai              binary
+*.bmp             binary
+*.eps             binary
+*.gif             binary
+*.gifv            binary
+*.ico             binary
+*.jng             binary
+*.jp2             binary
+*.jpg             binary
+*.jpeg            binary
+*.jpx             binary
+*.jxr             binary
+*.pdf             binary
+*.png             binary
+*.psb             binary
+*.psd             binary
+*.svg             binary
+*.svgz            binary
+*.tif             binary
+*.tiff            binary
+*.wbmp            binary
+*.webp            binary
+
+## AUDIO
+*.kar             binary
+*.m4a             binary
+*.mid             binary
+*.midi            binary
+*.mp3             binary
+*.ogg             binary
+*.ra              binary
+
+## VIDEO
+*.3gpp            binary
+*.3gp             binary
+*.as              binary
+*.asf             binary
+*.asx             binary
+*.fla             binary
+*.flv             binary
+*.m4v             binary
+*.mng             binary
+*.mov             binary
+*.mp4             binary
+*.mpeg            binary
+*.mpg             binary
+*.ogv             binary
+*.swc             binary
+*.swf             binary
+*.webm            binary
+
+## ARCHIVES
+*.7z              binary
+*.gz              binary
+*.jar             binary
+*.rar             binary
+*.tar             binary
+*.zip             binary
+
+## FONTS
+*.ttf             binary
+*.eot             binary
+*.otf             binary
+*.woff            binary
+*.woff2           binary
+
+## EXECUTABLES
+*.exe             binary
+*.pyc             binary
+
+# Do not attempt to merge these files
+composer.lock     -merge
+package-lock.json -merge
+yarn.lock         -merge
+
+# Diff ignore these compiled CSS/JS files
+/www/app/themes/*/dist/css/*.css -diff
+/www/app/themes/*/dist/js/*.js   -diff

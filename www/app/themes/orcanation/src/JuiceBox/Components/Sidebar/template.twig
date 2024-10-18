@@ -1,0 +1,12 @@
+<aside class="col md-3 spacing-large sidebar">
+    {% if post.parent().children('page') %}
+        <ul class="sidebar__nav">
+            <li class="sidebar__nav__item"><a href="{{ post.parent().link }}">{{ post.parent() }}</a></li>
+            <ul class="sidebar__sub-nav">
+                {% for item in post.parent().children('page') %}
+                    <li class="sidebar__sub-nav__item{{ item.id == post.id ? ' sidebar__sub-nav__item--current' : '' }}"><a href="{{ item.link }}">{{ item }}</a></li>
+                {% endfor %}
+            </ul>
+        </ul>
+    {% endif %}
+</aside>

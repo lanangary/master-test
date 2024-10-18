@@ -1,0 +1,96 @@
+.searchbox {
+    @include wp-admin-fix();
+    position: fixed;
+    background-color: rgba($brand-primary, 0.8);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    color: $white;
+    opacity: 0;
+    transition: opacity $transition-default;
+    pointer-events: none;
+    padding: 0 $grid-gutter-width;
+
+    .search-active & {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &__close {
+        @include square(40px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        margin: 0;
+        border: 0;
+        line-height: 0;
+        background-color: $white;
+        color: $brand-primary;
+        font-size: 25px;
+        transition: $transition-default;
+
+        @include on-event() {
+            color: $white;
+            background-color: $brand-primary;
+        }
+    }
+
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 800px;
+        height: 100vh;
+        overflow-y: auto;
+        justify-content: center;
+    }
+
+    &__form {
+        width: 100%;
+        position: relative;
+
+        // Need to be more specific here
+        .form-control {
+            margin-bottom: 0;
+            padding-right: 50px; // Same as button
+        }
+
+        &__submit {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            height: 100%;
+            width: 50px;
+        }
+    }
+
+    &__fuzzy {
+        margin-top: 10px;
+        background-color: $white;
+        color: $brand-primary;
+        border-radius: $border-radius-default;
+
+        &__link {
+            padding: 10px;
+        }
+
+        &__link + &__link {
+            border-top: 1px solid $brand-primary;
+        }
+
+        &__no-results {
+        }
+    }
+}
+
+body.search-active {
+    overflow: hidden;
+}

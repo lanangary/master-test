@@ -1,0 +1,63 @@
+.fancybox-container {
+    @include wp-admin-fix();
+}
+
+.fancybox-bg {
+    background-color: $white;
+
+    .fancybox-container--ready & {
+        opacity: 1;
+    }
+}
+
+.fancybox-caption {
+    font-family: $font-family-sans-serif;
+    font-weight: $font-weight-bold;
+}
+
+.fancybox-close-small:focus {
+    outline: none;
+}
+
+.fancybox-button {
+    background-color: $white;
+    color: $brand-primary;
+    transition: $transition-fast;
+
+    @include on-event() {
+        color: $white;
+        background-color: $brand-primary;
+    }
+
+    &--close {
+        background-color: $brand-primary;
+        color: $white;
+
+        @include on-event() {
+            color: $brand-primary;
+            background-color: $white;
+        }
+    }
+
+    &--left {
+        border-bottom-left-radius: $border-radius-default;
+    }
+
+    &--right {
+        border-bottom-right-radius: $border-radius-default;
+    }
+}
+
+.fancybox-infobar {
+    &__body {
+        background-color: $brand-primary;
+        color: $white;
+        font-weight: bold;
+    }
+}
+
+.fancybox-caption-wrap {
+    @include mq(md) {
+        padding-bottom: 20px;
+    }
+}

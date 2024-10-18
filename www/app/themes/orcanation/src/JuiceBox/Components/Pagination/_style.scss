@@ -1,0 +1,31 @@
+.pagination {
+    width: 100%;
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &__item {
+            &--current {
+                background-color: $brand-primary;
+                color: $white;
+
+                a {
+                    color: inherit;
+                }
+            }
+        }
+
+        &__link {
+            display: block;
+            padding: 10px;
+            font-weight: $font-weight-bold;
+            line-height: 1;
+
+            @include on-event() {
+                text-decoration: underline;
+            }
+        }
+    }
+}

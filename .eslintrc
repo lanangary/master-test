@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended", "prettier"],
+  "globals": {
+    "wp": true
+  },
+  "env": {
+    "node": true,
+    "es6": true,
+    "amd": true,
+    "browser": true,
+    "jquery": true
+  },
+  "plugins": [
+    "prettier",
+    "import"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "globalReturn": true,
+      "generators": false,
+      "objectLiteralDuplicateProperties": false,
+      "experimentalObjectRestSpread": true
+    },
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}

@@ -1,0 +1,23 @@
+// // 1. Configuration and helpers
+@import 'abstracts/functions', 'abstracts/variables';
+
+.wpadmin-env {
+    pointer-events: none;
+    background: theme-color('danger') !important;
+
+    &--production {
+        background: theme-color('success') !important;
+    }
+
+    &--staging {
+        background: theme-color('warning') !important;
+    }
+
+    &__dashicon {
+        // overriding some default wordpress styles
+        font-family: 'dashicons' !important;
+        display: inline-block !important;
+        margin-right: 5px !important;
+        font-size: 16px !important;
+    }
+}

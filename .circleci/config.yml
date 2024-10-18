@@ -1,0 +1,244 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2.1
+orbs:
+    slack: circleci/slack@3.4.2
+    vpn-connection: juicebox/vpn-connection@3.0.0
+jobs:
+    build_backend:
+        docker:
+            # Specify the PHP version you desire here
+            # https://circleci.com/developer/images/image/cimg/php
+            - image: cimg/php:8.2
+
+        steps:
+            - add_ssh_keys
+
+            - restore_cache:
+                keys:
+                    - source-v1-{{ .Branch }}-{{ .Revision }}
+                    - source-v1-{{ .Branch }}-
+                    - source-v1-
+
+            - checkout
+
+            - save_cache:
+                key: source-v1-{{ .Branch }}-{{ .Revision }}
+                paths:
+                    - ".git"
+
+            # Calculate checksum of plugins folder (to cache non-composer plugins)
+            - run:
+                name: "Checksum WordPress plugins directory for changes"
+                command: 'find www/app/plugins -type f -exec md5sum "{}" + | sort -n > plugins.chk'
+
+            # Download and cache dependencies
+            - restore_cache:
+                keys:
+                    # "composer.lock" can be used if it is committed to the repo
+                    - v1-dependencies-{{ checksum "composer.lock" }}-{{ checksum "plugins.chk" }}
+
+            - run:
+                name: "ACF Auth"
+                command: composer config http-basic.connect.advancedcustomfields.com ${GLOBAL_ACF_USERNAME} ${ACF_PASSWORD}
+
+            - run:
+                name: "Composer Install"
+                command: composer install -n --prefer-dist --no-dev
+
+            - save_cache:
+                key: v1-dependencies-{{ checksum "composer.lock" }}-{{ checksum "plugins.chk" }}
+                paths:
+                    - vendor
+                    - www/app/plugins
+                    - www/app/themes/juicy
+                    - www/wp
+
+            - run:
+                  name: 'Copy htaccess'
+                  command: |
+                      if [ "${CIRCLE_BRANCH}" = "${GLOBAL_STAGING_BRANCH}" ]; then
+                          [ -f www/.htaccess.develop ] && cp www/.htaccess.develop www/.htaccess
+                          exit 0
+                      elif [ "${CIRCLE_BRANCH}" = "${GLOBAL_PRODUCTION_BRANCH}" ]; then
+                          [ -f www/.htaccess.live ] && cp www/.htaccess.live www/.htaccess
+                          exit 0
+                      fi
+
+            - persist_to_workspace:
+                root: .
+                paths:
+                    - .env.*
+                    - .deployignore
+                    - auth.json
+                    - config
+                    - vendor
+                    - www/app/languages
+                    - www/app/mu-plugins
+                    - www/app/plugins
+                    - www/app/themes/juicy
+                    - www/signature
+                    - www/wp
+                    - www/.htaccess
+                    - www/.htpasswd
+                    - www/index.php
+                    - www/robots.txt
+                    - www/wp-config.php
+
+    build_frontend:
+        docker:
+            # Specify the version of Node you desire here
+            # https://circleci.com/developer/images/image/cimg/node
+            - image: cimg/node:14.21
+
+        steps:
+            - add_ssh_keys
+
+            - restore_cache:
+                keys:
+                    - source-v1-{{ .Branch }}-{{ .Revision }}
+                    - source-v1-{{ .Branch }}-
+                    - source-v1-
+
+            - checkout
+
+            - save_cache:
+                key: source-v1-{{ .Branch }}-{{ .Revision }}
+                paths:
+                    - ".git"
+
+            - restore_cache:
+                keys:
+                    - node-v1-{{ checksum "package.json" }}
+
+            - run:
+                name: "NPM Install"
+                command: npm install
+
+            - save_cache:
+                key: node-v1-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+
+            - run:
+                name: "NPM Build"
+                command: npm run production
+
+            - persist_to_workspace:
+                root: .
+                paths:
+                    - www/app/themes
+                    - www/release.json
+
+    deploy:
+        machine:
+            image: "ubuntu-2204:edge"
+        resource_class: medium
+
+        steps:
+            - add_ssh_keys
+
+            - attach_workspace:
+                # Must be absolute path or relative path from working_directory
+                at: ./
+
+            # Connect to VPN if environment variable $CONNECT_VPN is set to "true"
+            - vpn-connection/connect
+
+            - run:
+                name: "Set Environment Variables for Deployment"
+                command: |
+                    if [ "${CIRCLE_BRANCH}" = "${GLOBAL_STAGING_BRANCH}" ]; then
+                        [ -f .env.dev ] && rm -f .env && ln -s .env.dev .env
+                        [ -f .env.staging ] && rm -f .env && ln -s .env.staging .env
+                        [ -f .env.$CIRCLE_BRANCH ] && rm -f .env && ln -s .env.$CIRCLE_BRANCH .env
+                        exit 0
+                    elif [ "${CIRCLE_BRANCH}" = "${GLOBAL_PRODUCTION_BRANCH}" ]; then
+                        [ -f .env.live ] && rm -f .env && ln -s .env.live .env
+                        [ -f .env.$CIRCLE_BRANCH ] && rm -f .env && ln -s .env.$CIRCLE_BRANCH .env
+                        exit 0
+                    else
+                        echo "Not able to determine environment, deployment failed"
+                        exit 1
+                    fi
+
+            - run:
+                name: "Retrieve global list of files to ignore on deploy"
+                command: wget -O .deployignore.global $GLOBAL_DEPLOY_IGNORE_URL
+
+            - run:
+                name: "Rsync files to server"
+                command: |
+                    if [ "${CIRCLE_BRANCH}" = "${GLOBAL_STAGING_BRANCH}" ]; then
+                        rsync -azcq --rsync-path="sudo rsync" --chmod=D2775,F664 --chown=www-data:www-data --force --delete -e "ssh -p60022 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --force --delete --exclude-from=.deployignore.global --exclude-from=.deployignore ./ $DEVBOX_USER@$DEVBOX_HOST:$DEVBOX_WEBROOT/$CIRCLE_PROJECT_REPONAME
+                    elif [ "${CIRCLE_BRANCH}" = "${GLOBAL_PRODUCTION_BRANCH}" ]; then
+                        if [ -z "${LIVE_PASSWORD}" ]; then
+                            rsync -azcq --chmod=D2775,F664 --force --delete -e "ssh -p60022 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --exclude-from=.deployignore.global --exclude-from=.deployignore ./ $LIVE_USER@$LIVE_HOST:$LIVE_WEBROOT/$CIRCLE_PROJECT_REPONAME
+                        else
+                            sshpass -p${LIVE_PASSWORD} rsync -azcq --chmod=D2775,F664 --force --delete -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --exclude-from=.deployignore.global --exclude-from=.deployignore ./ $LIVE_USER@$LIVE_HOST:$LIVE_WEBROOT/$CIRCLE_PROJECT_REPONAME
+                        fi
+                    else
+                        echo "Not deployable branch, dry run only"
+                    fi
+
+            - run:
+                name: "Purge Cloudflare cache"
+                command: |
+                    if [ ! -z "${CF_ZONE}" ] && [ ! -z "${CF_TOKEN}" ]; then
+                        set -eo pipefail
+
+                        CFCURL="$(curl -s DELETE "https://api.cloudflare.com/client/v4/zones/${CF_ZONE}/purge_cache" \
+                        -H "Authorization: Bearer ${CF_TOKEN}" \
+                        -H "Content-Type: application/json" \
+                        --data '{"purge_everything":true}')"
+
+                        if [ "$( echo ${CFCURL} | jq '.success')" = false ]; then
+                        CFCURL_MESSAGE=$( echo ${CFCURL} | jq '.errors[].message')
+                        echo "-------------------------------------"
+                        echo "Error ${CFCURL_MESSAGE}"
+                        echo "-------------------------------------"
+                        exit 1
+                        else
+                        echo "-------------------------------------"
+                        echo "Success! Cache purged"
+                        echo "-------------------------------------"
+                        fi
+                    else
+                        echo "-------------------------------------"
+                        echo "Cloudflare environment variables missing. Skip cache purge."
+                        echo "-------------------------------------"
+                    fi
+
+            - slack/status:
+                only_for_branches: "develop,master"
+                webhook: "${GLOBAL_SLACK_WEBHOOK}"
+
+workflows:
+    build_and_deploy:
+        jobs:
+        - build_backend:
+            filters:
+                branches:
+                    only:
+                        - master
+                        - develop
+            context: org-juicebox
+        - build_frontend:
+            filters:
+                branches:
+                    only:
+                        - master
+                        - develop
+            context: org-juicebox
+        - deploy:
+            filters:
+                branches:
+                    only:
+                        - master
+                        - develop
+            context: org-juicebox
+            requires:
+                - build_backend
+                - build_frontend

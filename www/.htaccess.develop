@@ -1,0 +1,18 @@
+# --------- PHP 8.0
+<FilesMatch ".+\.ph(p[3457]?|t|tml)$">
+  <If "%{HTTP_HOST} =~ /.+\.dev\.juicebox\.com\.au/i || %{HTTP_HOST} =~ /.+\.dev\.box/i">
+    SetHandler "proxy:unix:/run/php/php8.0-fpm.sock|fcgi://localhost"
+  </If>
+</FilesMatch>
+
+# BEGIN WordPress
+
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+# END WordPress

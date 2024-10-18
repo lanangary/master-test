@@ -1,0 +1,43 @@
+@use "sass:math";
+
+.gallery {
+    padding: 20px 0;
+    clear: both;
+
+    &__item {
+        padding-top: $grid-gutter-width;
+        padding-bottom: $grid-gutter-width;
+        position: relative;
+
+        @include mq(sm) {
+            padding-top: math.div($grid-gutter-width, 2);
+            padding-bottom: math.div($grid-gutter-width, 2);
+        }
+
+        &__caption {
+            margin: 0 !important;
+            position: absolute;
+            left: 5px;
+            bottom: 0;
+            right: 5px;
+            padding: 10px;
+            background-color: rgba($black, 0.4);
+            color: $white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            @include mq(sm) {
+                left: math.div($grid-gutter-width, 2);
+                right: math.div($grid-gutter-width, 2);
+                bottom: math.div($grid-gutter-width, 2);
+            }
+        }
+
+        @include on-event() {
+            @include mq(sm) {
+                cursor: zoom-in;
+            }
+        }
+    }
+}

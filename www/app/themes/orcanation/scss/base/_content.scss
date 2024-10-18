@@ -1,0 +1,288 @@
+.article-content {
+    width: 100%;
+
+    // // Type
+    // $type: (
+    //     h2: $font-size-h4-map,
+    //     h3: $font-size-h5-map,
+    //     h4: $font-size-h6-map
+    // );
+
+    // @each $size, $map in $type {
+    //     #{$size} {
+    //         @include fluid(font-size, $map);
+    //         @include fluid(margin-top, (20px, 30px));
+    //         @include fluid(margin-bottom, (15px, 15px));
+    //     }
+    // }
+
+    p {
+        @include fluid(margin-bottom, (10px, 15px));
+
+        &.lead {
+            @include fluid(font-size, (16px, 18px));
+        }
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .alignnone {
+        margin: 5px 20px 20px 0;
+    }
+
+    .aligncenter {
+        display: block;
+        margin: 5px auto 20px;
+        width: auto;
+    }
+
+    .alignright {
+        float: right;
+        margin: 5px 0 20px 20px;
+        width: auto;
+    }
+
+    .alignleft {
+        float: left;
+        margin: 5px 20px 20px 0;
+        width: auto;
+    }
+
+    li {
+        position: relative;
+        padding: 0 0 6px 20px;
+
+        &:before {
+            left: 0;
+            position: absolute;
+            content: '';
+        }
+    }
+
+    ol,
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 20px;
+
+        ol,
+        ul {
+            padding-left: 0;
+            padding-top: 5px;
+        }
+    }
+
+    > ol,
+    > ul {
+        margin-top: 0;
+    }
+
+    ol {
+        counter-reset: li;
+
+        li {
+            &:before {
+                counter-increment: li;
+                content: counter(li) '.';
+                top: 3px;
+                font-size: 12px;
+                font-weight: $font-weight-bold;
+                color: $brand-primary;
+            }
+
+            ol {
+                counter-reset: lili;
+                margin-bottom: 0;
+
+                li {
+                    &:before {
+                        counter-increment: lili;
+                        content: counter(lili) '.';
+                        color: darken($brand-primary, 15%);
+                    }
+
+                    li {
+                        &:before {
+                            color: darken($brand-primary, 25%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ul {
+        li {
+            &:before {
+                @include square(6px);
+                border-radius: 50%;
+                background-color: $brand-primary;
+                top: 14px;
+                transform: translateY(-50%);
+            }
+
+            ul {
+                margin-bottom: 0;
+            }
+
+            li {
+                &:before {
+                    background-color: darken($brand-primary, 15%);
+                }
+
+                li {
+                    &:before {
+                        background-color: darken($brand-primary, 25%);
+                    }
+                }
+            }
+        }
+    }
+
+    iframe {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    a:not(.btn) {
+        color: $brand-primary;
+        font-weight: $font-weight-bold;
+
+        @include on-event() {
+            text-decoration: underline;
+        }
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+        font-size: 14px;
+
+        // Cells
+        > thead,
+        > tbody,
+        > tfoot {
+            > tr {
+                > th,
+                > td {
+                    padding: 10px 15px;
+                    line-height: 1.4;
+                    vertical-align: top;
+                }
+            }
+        }
+
+        > thead {
+            background-color: $brand-primary;
+            color: $white;
+            text-align: left;
+        }
+
+        // Bottom align for column headings
+        > thead > tr > th {
+            vertical-align: bottom;
+            border-bottom: 2px solid $white;
+        }
+        // Remove top border from thead by default
+        > caption + thead,
+        > colgroup + thead,
+        > thead:first-child {
+            > tr:first-child {
+                > th,
+                > td {
+                    border-top: 0;
+                }
+            }
+        }
+        // Account for multiple tbody instances
+        > tbody + tbody {
+            border-top: 2px solid $gray-400;
+        }
+
+        // Nesting
+        table {
+            background-color: $white;
+        }
+
+        > tbody > tr:nth-of-type(even) {
+            background-color: $gray-200;
+        }
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+
+        @include mq($until: sm) {
+            width: 100%;
+            margin-bottom: 20px;
+            overflow-y: hidden;
+            border: 1px solid $gray-400;
+
+            > table {
+                margin-bottom: 0;
+
+                > thead,
+                > tbody,
+                > tfoot {
+                    > tr {
+                        > th,
+                        > td {
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    blockquote {
+        @include fluid(padding, (25px, 40px));
+        @include fluid(font-size, (18px, 24px));
+        font-weight: $font-weight-bold;
+        color: $gray-600;
+        margin: 0;
+
+        > p {
+            margin: 0;
+
+            &:before {
+                content: '\201C';
+                margin-right: 5px;
+            }
+
+            &:after {
+                content: '\201D';
+                margin-left: 5px;
+            }
+        }
+    }
+
+    &__share {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        p {
+            margin: 0;
+            padding-right: 20px;
+        }
+        &__title {
+            margin: 0 20px 0 0;
+        }
+
+        &__link {
+            padding-bottom: 5px;
+            padding-right: 20px;
+
+            svg {
+                height: 18px;
+                fill: black;
+            }
+        }
+    }
+}

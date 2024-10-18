@@ -1,0 +1,74 @@
+@charset 'UTF-8';
+
+// // 1. Configuration and helpers
+@import 'abstracts/functions', 'abstracts/variables', 'abstracts/mixins', 'abstracts/mq';
+
+@import 'base/helpers';
+
+@import 'base/forms';
+
+@import 'base/buttons';
+
+body {
+    background-color: $white;
+}
+
+.login {
+    font-family: $font-family-sans-serif;
+
+    h1 {
+        a {
+            width: 200px;
+            height: 100px;
+            background: {
+                image: url('../../img/logo.svg');
+                size: contain;
+                position: center;
+                repeat: no-repeat;
+            }
+        }
+    }
+
+    form {
+        padding: 40px;
+        box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
+
+        .input,
+        .login input[type='text'] {
+            @extend .form-control;
+            border-color: $gray-400;
+        }
+    }
+
+    #login {
+        width: 100%;
+        max-width: 600px;
+
+        .submit {
+            float: right;
+            line-height: 1;
+            transition: $transition-default;
+        }
+
+        #wp-submit {
+            height: auto;
+            text-shadow: none;
+            font-size: 14px;
+            line-height: 1;
+            box-shadow: none;
+            @extend .btn;
+        }
+    }
+
+    #nav a,
+    #backtoblog a {
+        color: $gray-600;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $brand-primary;
+            text-decoration: underline;
+        }
+    }
+}

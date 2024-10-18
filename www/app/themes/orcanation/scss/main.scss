@@ -1,0 +1,49 @@
+@charset 'UTF-8';
+
+// 1. Configuration and helpers
+@import 'abstracts/functions',
+'abstracts/variables',
+'abstracts/mixins',
+'abstracts/mq';
+
+// 2. Normalize.
+@import 'vendor/reboot';
+
+// 3. Vendors and Overrides
+@import 'vendor/flex-mixins',
+'vendor/flex-grid',
+'vendor/nice-select',
+'vendor-overrides/nice-select',
+'vendor-overrides/gravity-forms',
+'vendor-overrides/browserupgrade';
+//'vendor-overrides/fancybox';
+
+// 4. Base stuff
+@import 'base/base',
+'base/fonts',
+'base/helpers',
+'base/type',
+'base/content',
+'base/buttons',
+'base/forms';
+
+// 6. Components
+@import '~JBComponent/Header/style',
+'~JBComponent/Footer/style',
+'~JBComponent/Loader/style',
+'~JBComponent/Searchbox/style',
+'~JBComponent/Sidebar/style',
+'~JBComponent/Pagination/style',
+'~JBComponent/PageReader/style',
+'components/tease',
+'components/gallery',
+'components/swiper-bundle.min.css';
+
+// 7. Modules
+
+
+
+
+@import '~JBModule/HeroSlider/style';
+
+// 8. Page-specific styles

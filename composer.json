@@ -1,0 +1,104 @@
+{
+    "name": "juicebox/orcanation",
+    "description": "A base wordpress install for Juicebox Projects based on Bedrock",
+    "require": {
+        "php": ">=8.0",
+        "composer/installers": "^1.9",
+        "vlucas/phpdotenv": "^3.6",
+        "oscarotero/env": "^1.2",
+        "roots/soil": "^4.1",
+        "roots/wordpress": "^6.0",
+        "roots/wp-password-bcrypt": "1.0.0",
+        "roots/wp-h5bp-htaccess": "dev-master",
+        "timber/timber": "^1.20",
+        "wpengine/advanced-custom-fields-pro": "*",
+        "wpackagist-plugin/amazon-s3-and-cloudfront": "*",
+        "wp-sync-db/wp-sync-db": "dev-master",
+        "wpackagist-plugin/classic-editor": "*",
+        "wpackagist-plugin/favicon-by-realfavicongenerator": "*",
+        "wpackagist-plugin/redirection": "*",
+        "wpackagist-plugin/relevanssi": "*",
+        "wpackagist-plugin/wordpress-seo": "*",
+        "wpackagist-plugin/wp-nested-pages": "*",
+        "wpackagist-plugin/wp-security-audit-log": "*",
+        "wpackagist-plugin/enable-jquery-migrate-helper": "*",
+        "wpackagist-plugin/wp-crontrol": "*",
+        "larapack/dd": "^1.1",
+        "rappasoft/laravel-helpers": "^1.0",
+        "wpackagist-plugin/wp-mail-smtp": "^3.6",
+        "wpackagist-plugin/svg-support": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "roave/security-advisories": "dev-master",
+        "wp-coding-standards/wpcs": "*",
+        "wpackagist-plugin/debug-bar": "*",
+        "wpackagist-plugin/debug-bar-console": "*",
+        "wpackagist-plugin/log-deprecated-notices": "*",
+        "wpackagist-plugin/simply-show-ids": "*",
+        "wpackagist-plugin/user-switching": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:JuiceBoxCreative/juicy.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/JuiceboxCreative/wp-sync-db.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/JuiceboxCreative/wp-h5bp-htaccess.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://connect.advancedcustomfields.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "www/app/themes/orcanation/src/",
+            "WordpressBase\\Installers\\": "src/Installers/"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "www/app/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin",
+                "wpengine/advanced-custom-fields-pro"
+            ],
+            "www/app/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "www/app/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "www/wp"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "WordpressBase\\Installers\\Installer::postInstall",
+            "WordpressBase\\Installers\\Installer::checkHtaccess"
+        ],
+        "test": [
+            "vendor/bin/phpcs -d memory_limit=512M --colors --ignore=node_modules/,www/app/plugins/,www/app/mu-plugins/,www/app/uploads/,www/wp/,vendor/ -n -s ."
+        ]
+    }
+}

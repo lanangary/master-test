@@ -1,0 +1,16 @@
+<div class="gallery gallery--{{ instance }} row">
+    {% for item in images %}
+        <div class="col xs-12 sm-6 md-4">
+            <a href="{{ item.src|resize(1200, 0, 'center') }}" class="gallery__item" data-fancybox-group="group" data-caption="{{ item.caption }}">
+                <figure>
+                    <img src="{{ item.src|resize(400, 320, 'center') }}" alt="{{ item.alt }}" />
+                    {% if item.caption %}
+                        <figcaption class="gallery__item__caption text-uppercase bold font-size-default letter">
+                            {{ item.caption }}
+                        </figcaption>
+                    {% endif %}
+                </figure>
+            </a>
+        </div>
+    {% endfor %}
+</div>

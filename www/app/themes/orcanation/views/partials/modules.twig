@@ -1,0 +1,8 @@
+{% for module in post.get_modules %}
+    {%
+        include module.template with {
+            module: module,
+            index: loop.index
+        }
+    %}
+{% endfor %}

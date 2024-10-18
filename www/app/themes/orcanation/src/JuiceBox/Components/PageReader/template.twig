@@ -1,0 +1,25 @@
+<div class="page-reader-progress">
+    <div class="container">
+        <div class="row">
+            <div class="col xs-12 page-reader-progress__text">
+                <span class="page-reader-progress__text__label">You are reading:</span> <span class="page-reader-progress__text__title" title="{{ post.title|e }}">{{ post.title }}</span>
+
+                {% set share_icons = post.get_share_link() %}
+                {% if share_icons %}
+                <span class="page-reader-progress__share">
+                    {% for icon in share_icons %}
+                    <a href="{{ icon.link }}" target="_blank" rel="noreferrer" class="page-reader-progress__share__icon page-reader-progress__share__icon--{{ icon.type }}">
+                        <span class="sr-only">{{ icon.title }}</span>
+                        {{ svg_icon(icon.icon) }}
+                    </a>
+                    {% endfor %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="page-reader-progress__bar">
+        <div class="page-reader-progress__inner"></div>
+    </div>
+</div>
+<div class="page-reader-progress__placeholder"></div> {# Used to push content down #}

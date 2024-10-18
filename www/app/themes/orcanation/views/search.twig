@@ -1,0 +1,9 @@
+{% extends "page.twig" %}
+
+{% block afterContentContainer %}
+    {% for post in posts %}
+        {% include ["tease-#{post.post_type}.twig", "tease.twig"] %}
+    {% endfor %}
+
+    {% include 'Pagination/template.twig' %}
+{% endblock %}

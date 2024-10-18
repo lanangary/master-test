@@ -1,0 +1,20 @@
+@charset 'UTF-8';
+
+// 1. Configuration and helpers
+@import 'abstracts/functions', 'abstracts/variables', 'abstracts/mixins', 'abstracts/mq';
+
+@import 'vendor/reboot';
+
+// 4. Base stuff
+@import 'base/base',
+    'base/fonts',
+    'base/helpers',
+    'base/type',
+    'base/content',
+    'base/buttons';
+
+#tinymce {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px !important;
+}

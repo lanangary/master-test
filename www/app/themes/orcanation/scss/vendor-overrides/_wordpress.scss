@@ -1,0 +1,122 @@
+/**
+ * Wordpress class overrides.
+ */
+
+.gallery {
+    @include make-row();
+}
+
+.gallery-item {
+    float: left;
+    padding-left: math.div($grid-gutter-width, 2);
+    padding-right: math.div($grid-gutter-width, 2);
+
+    .gallery-columns-0 & {
+        width: 100%;
+    }
+
+    .gallery-columns-1 & {
+        width: 100%;
+    }
+
+    .gallery-columns-2 & {
+        width: 50%;
+    }
+
+    .gallery-columns-3 & {
+        width: 33.33%;
+    }
+
+    .gallery-columns-4 & {
+        width: 25%;
+    }
+
+    .gallery-columns-5 & {
+        width: 20%;
+    }
+
+    .gallery-caption {
+        font-family: $headings-font-family;
+        font-weight: $headings-font-weight;
+        line-height: $headings-line-height;
+        font-size: $font-size-h4;
+        color: $headings-color;
+        text-transform: uppercase;
+        margin: 20px 0 0;
+    }
+}
+
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto;
+}
+
+.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+    font-size: $font-size-h4;
+    color: $headings-color;
+    text-transform: uppercase;
+    margin: 20px 0 0;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    margin: 0;
+    padding: 0 4px 5px;
+}

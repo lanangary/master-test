@@ -1,0 +1,13 @@
+<div class="sitemap">
+    {% for section in sitemap %}
+        {% if section.items is not empty %}
+        <h2>{{section.title}}</h2>
+
+        <ul>
+        {% for item in section.items %}
+            <li><a href="{{item.link}}">{{item.title}}</a></li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endfor %}
+</div>

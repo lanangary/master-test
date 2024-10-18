@@ -1,0 +1,26 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+    <section class="section section-main section-main--{{ post.post_type }} padding-fluid-default">
+        <div class="container">
+            <div class="row">
+                {% block beforeContentContainer %}
+                    {% include 'Sidebar/template.twig' %}
+                {% endblock %}
+                <article class="col {{ contentClass|default('md-8 md-offset-1') }} article-content article-content--{{ post.post_type }}">
+                    {% block beforeArticleContent %}{% endblock %}
+                    {% block articleContent %}
+                        {{ post.content }}
+                    {% endblock %}
+                    {% block afterArticleContent %}{% endblock %}
+                </article>
+                {% block afterContentContainer %}{% endblock %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block afterMain %}
+    {% include 'partials/modules.twig' %}
+{% endblock %}
+

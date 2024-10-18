@@ -1,0 +1,112 @@
+{# <footer class="footer-base footer-base--0 padding-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col xs-12 sm-2">
+                <a href="tel:{{ options.phone|tel }}" class="large i-block underline footer-base__contact-link">{{ options.phone }}</a>
+            </div>
+            <div class="col xs-12 sm-4">
+                <a href="mailto:{{ options.email }}" class="large i-block underline footer-base__contact-link">{{ options.email }}</a>
+            </div>
+            <div class="col xs-12 sm-6 footer-base__social_links">
+                {% for item in options.social_links %}
+                    <a href="{{ item.link }}" class="footer-base__social_link" target="_blank">
+                        <span class="sr-only">{{ item.type.label }}</span>
+                        {{ icon(item.type.value) }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</footer>
+<footer class="footer padding-fluid-xsmall">
+    <div class="container">
+        <div class="row">
+            <div class="col xs-6 sm-2">
+                <p class="small bold text-uppercase no-margin footer__copy">&copy; {{ "now"|date('Y') }} {{ site.name }}</p>
+            </div>
+            <nav class="col xs-12 sm-8 sm-2 footer__menu-wrapper" aria-label="Legal navigation">
+                <ul class="footer__menu">
+                    {% for item in theme_menus.legal_menu.items %}
+                        <li class="footer__menu__li">
+                            <a href="{{ item.link }}" class="small footer__menu__link">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <div class="col xs-6 sm-2 text-right">
+                <p><a href="https://www.juicebox.com.au/" target="_blank" class="small bold text-uppercase footer__jb">A Juicebox Experience</a></p>
+                <p><a href="#top">Back to top</a></p>
+            </div>
+        </div>
+    </div>
+</footer> #}
+
+
+<footer class="footer global">
+	<div class="container">
+		<div class="footer-wrap">
+			<div class="footer-section">
+				<a href="{{ site.url }}" class="text-hide block footer__logo">
+					{{ svg_icon('footer-icon/footer-logo') }}
+				</a>
+			</div>
+
+			<div class="footer-section">
+				{% include 'Header/nav.twig' with {
+                        menu: theme_menus.footer_menu
+                } only %}
+			</div>
+
+			<div class="footer-section">
+				<div class="footer-section-social">
+					<div class="footer-section-social-title">
+						Phone
+					</div>
+					<div class="footer-section-social-desc">
+						<a href="#" target="_blank" rel="noopener noreferrer">
+							+65 3165 0000 South East Asia<br>+351 308 806 338
+						</a>
+					</div>
+				</div>
+				<div class="footer-section-social">
+					<div class="footer-section-social-title">
+						Email
+					</div>
+					<div class="footer-section-social-desc">
+						<a href="#" target="_blank" rel="noopener noreferrer">
+							info@orcanation.com.au
+						</a>
+					</div>
+				</div>
+				<div class="footer-section-social social">
+					<a href="">
+						{{ svg_icon('footer-icon/youtube') }}
+					</a>
+					<a href="">
+						{{ svg_icon('footer-icon/instagram') }}
+					</a>
+					<a href="">
+						{{ svg_icon('footer-icon/linkedin') }}
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="footer-legal">
+			<div class="footer-legal-item">
+				© 2024 OrcaNation. All rights reserved.
+			</div>
+			<div class="footer-legal-item">
+				{% include 'Header/nav.twig' with {
+                        menu: theme_menus.legal_menu
+                } only %}
+			</div>
+			<div class="footer-legal-item">
+				{{ svg_icon('footer-icon/digital-jb') }}
+			</div>
+
+		</div>
+	</div>
+</footer>

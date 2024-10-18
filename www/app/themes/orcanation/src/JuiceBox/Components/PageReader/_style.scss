@@ -1,0 +1,106 @@
+.page-reader-progress {
+    width: 100%;
+    // height: $page-reader-header-height;
+    background: $brand-primary;
+    z-index: 90;
+
+    &__placeholder {
+        position: relative;
+        height: 85px;
+        width: 100%;
+    }
+
+    &__text {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 50px;
+        font-size: 14px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &__label {
+            color: white;
+            font-weight: bold;
+            padding-right: 8px;
+            white-space: nowrap;
+            padding-top: 5px;
+            display: none;
+
+            @include mq(sm) {
+                display: inline-block;
+            }
+        }
+        &__title {
+            color: white;
+            display: inline-block;
+            padding-top: 5px;
+
+            @include mq($until: sm) {
+                white-space: nowrap;
+                overflow: hidden;
+                overflow-x: auto;
+                display: none;
+            }
+        }
+    }
+
+    &__bar {
+        height: 4px;
+        width: 100%;
+    }
+
+    &__inner {
+        background: $brand-secondary;
+        height: 4px;
+        width: 0;
+        transition: width 0.2s ease;
+    }
+
+    &__share {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: nowrap;
+        margin-left: auto;
+
+        &__icon {
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            padding: 10px 5px;
+            position: relative;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include on-event() {
+                text-decoration: none;
+
+                svg {
+                    path {
+                        fill: $brand-secondary;
+                    }
+                }
+            }
+
+            &:hover {
+                @media (hover: hover) {
+                    border-color: $brand-secondary;
+                }
+            }
+
+            svg {
+                width: auto;
+                height: 15px;
+                fill: white;
+                path {
+                    transition: $transition-default;
+                }
+            }
+        }
+    }
+}

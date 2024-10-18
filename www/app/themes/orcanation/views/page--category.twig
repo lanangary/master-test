@@ -1,0 +1,28 @@
+{% extends 'page.twig' %}
+
+{% set headerClass = 'md-10 md-offset-1' %}
+
+{# remove sidebar #}
+{% block beforeContentContainer %}{% endblock %}
+
+{% block afterMain %}
+    <section class="category-cards padding-fluid pt0">
+        <div class="container">
+            <div class="row">
+                <div class="col md-10 md-offset-1">
+                    <div class="row card-wrapper">
+                        {% for item in post.children('page') %}
+                            <div class="col sm-6 md-4 flex">
+                                {% include 'tease.twig' with {
+                                    item: item,
+                                    cssClasses: 'padding-fluid-large'
+                                } only %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ parent() }}
+{% endblock %}

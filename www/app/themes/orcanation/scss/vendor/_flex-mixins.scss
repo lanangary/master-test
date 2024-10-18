@@ -1,0 +1,73 @@
+@use "sass:math";
+
+@mixin flex-grid($title) {
+    .first-#{$title} {
+        order: -1;
+    }
+
+    .reset-#{$title} {
+        order: 0;
+    }
+
+    .last-#{$title} {
+        order: 1;
+    }
+
+    @for $i from 0 through $grid-columns {
+        @if ($i != 0) {
+            .#{$title}-#{$i} {
+                flex-basis: percentage(math.div($i, $grid-columns));
+                max-width: percentage(math.div($i, $grid-columns));
+            }
+        }
+
+        .#{$title}-offset-#{$i} {
+            margin-left: percentage(math.div($i, $grid-columns));
+        }
+    }
+}
+
+@mixin justify-content-helper($value) {
+    @if ($value == 'center') {
+        text-align: center;
+    }
+
+    @if ($value == 'flex-start') {
+        text-align: start;
+    }
+
+    @if ($value == 'flex-end') {
+        text-align: end;
+    }
+}
+
+@mixin flex-helper($prop, $base, $values) {
+    @for $i from 1 through length($mq-breakpoints) {
+        $break-at: nth($mq-breakpoints, $i);
+        $title: nth($break-at, 1);
+
+        @if ($i != 1) {
+            @include mq($title) {
+                @each $value in $values {
+                    .#{$base}-#{$value}-#{$title} {
+                        #{$prop}: $value;
+
+                        @if ($prop == 'justify-content') {
+                            @include justify-content-helper($value);
+                        }
+                    }
+                }
+            }
+        } @else {
+            @each $value in $values {
+                .#{$base}-#{$value} {
+                    #{$prop}: $value;
+
+                    @if ($prop == 'justify-content') {
+                        @include justify-content-helper($value);
+                    }
+                }
+            }
+        }
+    }
+}

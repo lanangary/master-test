@@ -1,0 +1,89 @@
+/*
+Colours
+The $colors map will generate a list of helper classes
+you can use for setting background and colour, eg.
+.white { color : $white }
+.bg-white { background-color : $white }
+*/
+
+$brand-primary: #2883ad;
+$brand-secondary: #435b69;
+
+$colors: (
+    'brand-primary': $brand-primary,
+    'brand-secondary': $brand-secondary
+);
+
+/*
+Transitions
+*/
+$transition-ease: ease-out;
+$transition-speed-fast: 150ms;
+$transition-speed-default: 300ms;
+$transition-speed-slow: 600ms;
+$transition-default: all $transition-speed-default $transition-ease;
+$transition-fast: all $transition-speed-fast $transition-ease;
+$transition-slow: all $transition-speed-slow $transition-ease;
+
+/*
+Type
+These values will be used to generate fluid type classes
+*/
+
+$font-family-sans-serif: Helvetica, Arial, sans-serif;
+$font-family-serif: Georgia, serif;
+$font-family-base: $font-family-sans-serif;
+
+/*
+Heading sizes
+*/
+
+$font-size-h1-min: 36px;
+$font-size-h1-max: 60px;
+
+$font-size-h2-min: 30px;
+$font-size-h2-max: 50px;
+
+$font-size-h3-min: 24px;
+$font-size-h3-max: 40px;
+
+$font-size-h4-min: 18px;
+$font-size-h4-max: 30px;
+
+$font-size-h5-min: 18px;
+$font-size-h5-max: 20px;
+
+$font-size-h6-min: 14px;
+$font-size-h6-max: 13px;
+
+/*
+Body Sizes
+*/
+// eg p.small
+$font-size-small-min: 10px;
+$font-size-small-max: 12px;
+
+// eg p, li
+$font-size-default-min: 13px;
+$font-size-default-max: 14px;
+
+// eg p.lead
+$font-size-large-min: 14px;
+$font-size-large-max: 18px;
+
+/*
+Base Padding
+The base unit for this site's spacing, will be used
+to generate the grid classes as well ass your padding helper classes
+*/
+
+$padding: 30px;
+$btn-padding-y: 1rem;
+$btn-padding-x: 1.5rem;
+
+/**
+ * Header Height
+ */
+$header-height: 110px !default;
+$header-mobile-height: 80px !default;
+$page-reader-header-height: 50px !default;

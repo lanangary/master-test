@@ -1,0 +1,24 @@
+.tease {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 30px 5px rgba($black, 0);
+    transition: $transition-default;
+
+    > div {
+        flex: 1;
+    }
+
+    &__title {
+        margin-bottom: 0;
+    }
+
+    &__content-wrapper {
+        padding: 20px;
+        color: $white;
+        background-color: $brand-primary;
+    }
+
+    @include on-event() {
+        box-shadow: 0 8px 30px 6px rgba($black, 0.4);
+    }
+}

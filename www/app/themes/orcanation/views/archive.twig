@@ -1,0 +1,21 @@
+{% extends "page.twig" %}
+
+{# remove sidebar #}
+{% block beforeContentContainer %}{% endblock %}
+
+{% block afterContentContainer %}
+    <div class="col xs-12">
+        <div class="row">
+        {% for post in posts %}
+            <div class="col sm-6 md-4 flex">
+            {% include ["tease-#{post.post_type}.twig", "tease.twig"] with {
+                item: post,
+                cssClasses: 'padding-fluid'
+            } %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    {% include 'Pagination/template.twig' %}
+{% endblock %}

@@ -1,0 +1,43 @@
+// Reset fonts for relevant elements
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+// Type
+$type: (
+    h1: $h1-font-size,
+    h2: $h2-font-size,
+    h3: $h3-font-size,
+    h4: $h4-font-size,
+    h5: $h5-font-size,
+    h6: $h6-font-size
+);
+
+@each $size, $font-size in $type {
+    #{$size},
+    .#{$size} {
+        color: $headings-color;
+        font-weight: $headings-font-weight;
+        font-family: $headings-font-family;
+        line-height: $headings-line-height;
+        font-size: $font-size;
+        margin-bottom: 0.5rem;
+    }
+}
+
+// // Font size, line height should come from body
+// p {
+//     margin: 0;
+//     @include fluid(margin-bottom, $padding-default-map);
+// }
+
+// .lead {
+//     @include fluid(font-size, $font-size-large-map);
+//     line-height: $line-height-default;
+//     color: $gray-600;
+// }

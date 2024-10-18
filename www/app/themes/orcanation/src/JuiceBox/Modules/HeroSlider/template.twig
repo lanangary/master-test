@@ -1,0 +1,50 @@
+<div class="module hero-slider">
+
+	<div class="hero-slider-wrap">
+		<div class="hero-slider-clip">
+			<div class="swiper">
+				<div class="swiper-wrapper">
+					{% for item in module.items %}
+						{% if item.image %}
+							<div class="swiper-slide hero-slider-clip-item">
+								<img class="hero-slider-image" src="{{item.image.url}}" alt="{{item.image.title}}">
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+				<!-- If we need pagination -->
+				<div class="swiper-pagination"></div>
+			</div>
+
+			<div class="hero-slider-clip-pagination">
+				{% for item in module.items %}
+					<div class="hero-slider-clip-pagination-item {{loop.first ? 'active' : ''}}" data-index="{{loop.index}}"></div>
+				{% endfor %}
+			</div>
+
+			<div class="hero-slider-clip-button-next">
+				{% include "HeroSlider/button-next.twig" %}
+			</div>
+		</div>
+
+		<div class="hero-slider-title">
+			<div class="hero-slider-title-top stag-text">
+				Together we
+			</div>
+			<div class="hero-slider-title-down stag-text-down">
+				can turn tides
+			</div>
+			<div class="hero-slider-title-desc">
+				{{module.sub_title}}
+			</div>
+		</div>
+
+
+		<div class="hero-slider-mask-one">
+			<img class="hero-slider-mask-one-image" src="{{ site.theme.link }}/img/hero-slider/mask-1-img.png" alt="mask-1-image">
+		</div>
+		<div class="hero-slider-mask-two">
+			<img class="hero-slider-mask-two-image" src="{{ site.theme.link }}/img/hero-slider/mask-2-img.png" alt="mask-2-image">
+		</div>
+	</div>
+</div>

@@ -1,0 +1,4 @@
+<li class="newsletter-signup__list-item newsletter-signup__list-item--field">
+    <label class="newsletter-signup__label sr-only" for="{{ "#{instance}_#{name}" }}">{{ name|title }}</label>
+    <input type="{{ type }}" name={{ name }} placeholder="{{ placeholder }}" id="{{ "#{instance}_#{name}" }}" tabindex="-1" class="newsletter-signup__form-control form-control"{{ validate is not empty ? " data-validate=\"#{validate}\"" : '' }} />
+</li>

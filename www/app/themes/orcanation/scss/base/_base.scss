@@ -1,0 +1,86 @@
+// -----------------------------------------------------------------------------
+// This file contains global HTML tag styles.
+// -----------------------------------------------------------------------------
+
+:root {
+    font-family: $font-family-base;
+    line-height: $line-height-base;
+    font-weight: $font-weight-normal;
+    font-size: 14px;
+
+    @include mq(md) {
+        font-size: 16px;
+    }
+}
+
+* {
+    &,
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    color: $body-color;
+    background-color: $body-bg;
+}
+
+::selection {
+    background: $brand-primary;
+    color: $white;
+}
+
+::-moz-selection {
+    background: $brand-primary;
+    color: $white;
+}
+
+.content-wrap {
+    flex: 1 0 auto;
+}
+
+.page-wrap {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: $body-bg;
+}
+
+// Images
+img {
+    vertical-align: middle;
+    max-width: 100%;
+}
+
+a {
+    color: $brand-primary;
+    text-decoration: none;
+    transition: $transition-default;
+
+    @include on-event() {
+        color: darken($brand-primary, 10%);
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.clip-marker {
+    width: 0;
+    height: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}

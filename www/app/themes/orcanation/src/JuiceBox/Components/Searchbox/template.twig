@@ -1,0 +1,16 @@
+<div class="searchbox" role="search">
+    <button class="searchbox__close" type="button">&times;</button>
+    <div class="searchbox__wrap">
+        <div class="searchbox__content">
+            <h2 class="h3 searchbox__title">Search....</h2>
+        </div>
+        <div class="searchbox__form-wrap">
+            <form class="searchbox__form" method="get" action="{{ site.link }}" autocomplete="off">
+                <label for="s" class="sr-only">Search</label>
+                <input type="text" value="{{ query }}" name="s" id="s" placeholder="What are you searching for?" class="form-control searchbox__form__input">
+                <button type="submit" class="searchbox__form__submit"><span class="sr-only">Search</span>{{ svg_icon('search') }}</button>
+            </form>
+        </div>
+        <div class="searchbox__fuzzy"></div>
+    </div>
+</div>

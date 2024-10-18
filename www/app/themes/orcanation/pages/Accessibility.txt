@@ -1,0 +1,68 @@
+To ensure that this website is able to be accessed by as many users as possible we cater for people who:
+<ul>
+    <li>Have a visual or hearing disability or are required to use assistive technologies;</li>
+    <li>Have a difficulty comprehending text;</li>
+    <li>Are unable to use or do not have a keyboard or mouse;</li>
+    <li>Have a poor internet connection speed;</li>
+    <li>Are accessing information using a small screen, such as a mobile phone or a hand–held device.</li>
+</ul>
+<h2>Accessibility features of this website</h2>
+<h3>Adjusting the page zoom of this website</h3>
+You can use your browsers zoom feature to enlarge the entire website:
+<h4>For Google Chrome Users</h4>
+On Apple OSX hold ‘Command’ and press the ‘+’ (plus) or ‘-‘ (minus) keys.
+
+On Microsoft Windows hold ‘Control’ and press the ‘+’ (plus) or ‘-‘ (minus) keys.
+<h4>For Internet Explorer 7 &amp; 8 Users</h4>
+Navigate to the ‘View’ menu and select the ‘Zoom’ option or for keyboard users hold ‘Control’ and press the ‘+’ (plus) or ‘-’ (minus) keys.
+<h4>For Internet Explorer 9 &amp; 10 Users</h4>
+Navigate to the Cog icon (settings icon) menu and select the ‘Zoom’ option or for keyboard users hold ‘Control’ and press the ‘+’ (plus) or ‘-’ (minus) keys.
+<h4>For Firefox Users</h4>
+Navigate the ‘View’ menu and select the ‘Zoom’ option or for keyboard users hold ‘Control’ and press the ‘+’ (plus) or ‘-’ (minus) keys.
+<h4>For Safari Users</h4>
+Navigate to the ‘View’ menu and select ‘Zoom In’ or ‘Zoom Out’or for keyboard users hold ‘Command’ and press the ‘+’ (plus) or ‘-’ (minus) keys.
+<h3>Navigational Aids</h3>
+To ensure users that are unable to use a mouse or who navigate with a screen reader we have enabled multiple ways to navigate.
+<h4>Tab-based Navigation</h4>
+Tab-based navigation is enabled for this website. The website navigation has a main menu of menu items and each of these menu items has a sub menu of items.
+<ul>
+    <li>To navigate to a link that is active press enter.</li>
+    <li>When navigating to a main menu item, its associated sub menu items will be displayed automatically</li>
+    <li>Pressing enter on a sub menu item will navigate to that page</li>
+    <li>To navigate in reverse hold ‘shift’ as you press tab</li>
+</ul>
+Please note that within Safari as of version 5.1.2 this feature is disabled by default. To enable it navigate to the Preferences window, select the advanced tab and ensure ‘Press Tab to highlight each item on a webpage’ is checked.
+<h3>Other Accessibility Features</h3>
+<h4>Printer Friendly</h4>
+This website has been designed to make printing of any page easier. To print any page follow the following steps:
+
+For Windows Users - Hold ‘Control’ and press ‘p’.
+
+For Apple OSX Users - Hold ‘Command’ and press ‘p’
+<h4>Access to additional plugins</h4>
+Whilst navigating this site you may find files that require additional software to be used. We have provided some useful links below.
+
+For PDF Documents
+<a href="http://get.adobe.com/reader/">http://get.adobe.com/reader/</a>
+
+For Microsoft Word, Powerpoint and Excel Documents
+<a href="http://www.openoffice.org/">http://www.openoffice.org/</a>
+
+For more accessibility information about your browser
+
+Support for Safari
+<a href="http://www.apple.com/support/mac-apps/safari/">http://www.apple.com/support/mac-apps/safari/</a>
+
+Accessibility features for Chrome
+<a href="http://support.google.com/chromeos/bin/answer.py?hl=en&amp;answer=177893">http://support.google.com/chromeos/bin/answer.py?hl=en&amp;answer=177893</a>
+
+Accessibility features for Firefox
+<a href="http://support.mozilla.org/en-US/kb/accessibility-features-firefox-make-firefox-and-we">http://support.mozilla.org/en-US/kb/accessibility-features-firefox-make-firefox-and-we</a>
+
+Accessibility features for Microsoft Products
+<a href="http://www.microsoft.com/enable/training/default.aspx">http://www.microsoft.com/enable/training/default.aspx</a>
+
+Accessibility features for Opera Products
+<a href="http://www.opera.com/help">http://www.opera.com/help</a>
+
+Please note these links lead to external websites and we are unable to offer support for issues encountered.

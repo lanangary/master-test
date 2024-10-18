@@ -1,0 +1,162 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+    @if $self {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    } @else {
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+}
+
+@mixin hover {
+    &:hover {
+        @content;
+    }
+}
+
+@mixin hover-focus {
+    &:hover,
+    &:focus {
+        @content;
+    }
+}
+
+@mixin plain-hover-focus {
+    &,
+    &:hover,
+    &:focus {
+        @content;
+    }
+}
+
+@mixin hover-focus-active {
+    &:hover,
+    &:focus,
+    &:active {
+        @content;
+    }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+    #{$context} & {
+        @content;
+    }
+}
+
+@mixin input-placeholder() {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+// Fluid Typography mixin.
+@mixin fluid(
+    $properties,
+    $list,
+    $min-vw: map-get($grid-breakpoints, 'xs'),
+    $max-vw: map-get($grid-breakpoints, 'xl')
+) {
+    @if (length($list) == 2) {
+        $min-value: nth($list, 1);
+        $max-value: nth($list, 2);
+        @include _fluid($properties, $min-value, $max-value, $min-vw, $max-vw);
+    } @else {
+        $min-value: nth($list, 1);
+        $max-value: nth($list, 1);
+        @include _fluid($properties, $min-value, $max-value, $min-vw, $max-vw);
+    }
+}
+
+@mixin _fluid($properties, $min-value, $max-value, $min-vw, $max-vw) {
+    @each $property in $properties {
+        #{$property}: $min-value;
+    }
+
+    @media screen and (min-width: $min-vw) {
+        @each $property in $properties {
+            #{$property}: calc(
+                #{$min-value} +
+                    #{strip-unit($max-value - $min-value)} *
+                    (100vw - #{$min-vw}) /
+                    #{strip-unit($max-vw - $min-vw)}
+            );
+        }
+    }
+
+    @media screen and (min-width: $max-vw) {
+        @each $property in $properties {
+            #{$property}: $max-value;
+        }
+    }
+}
+
+@mixin wp-admin-fix($property: top) {
+    .admin-bar & {
+        #{$property}: 46px;
+
+        @media (min-width: 783px) {
+            #{$property}: 32px;
+        }
+    }
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin square($size) {
+    @include size($size, $size);
+}
+
+@mixin center-block() {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: ' '; // 1
+        display: table; // 2
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin text-hide() {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}

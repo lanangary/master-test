@@ -1,0 +1,20 @@
+<h2>About using this website</h2>
+By using this website you are accepting all the terms of this disclaimer notice. If you do not agree with anything in this notice you should not use this website.
+<h3>Warranties and liability</h3>
+While every effort is made to ensure that the content of this website is accurate, the website is provided as is and <strong>[theme_option value="client_name"]</strong> makes no representations or warranties in relation to the accuracy or completeness of the information found on it. While the content of this site is provided in good faith, we do not warrant that the information will be kept up to date, be true and not misleading, or that this site will always (or ever) be available for use.
+
+We do not warrant that the servers that make this website available will be error, virus or bug free and you accept that it is your responsibility to make adequate provision for protection against such threats. We recommend scanning any files before downloading.
+
+In no event will <strong>[theme_option value="client_name"]</strong> be liable for any incidental, indirect, consequential or special damages of any kind, or any damages whatsoever, including, without limitation, those resulting from loss of profit, loss of contracts, goodwill, data, information, income, anticipated savings or business relationships, whether or not advised of the possibility of such damage, arising out of or in connection with the use of this website or any linked websites.
+<h3>Exceptions</h3>
+Nothing in this disclaimer notice excludes or limits any warranty implied by law for death, fraud, personal injury through negligence, or anything else which it would not be lawful for <strong>[theme_option value="client_name"]</strong> to exclude.
+<h3>Licence to use this website</h3>
+By using this website you agree to the exclusions and limitations of liability stated above and accept them as reasonable. Do not use this website if you do not agree that they are reasonable.
+
+If any of the points in this disclaimer notice are found to be unenforceable under applicable law, that will have no bearing on the enforceability of the rest of the disclaimer notice.
+
+Material on this website, including text and images, is protected by copyright law and is copyright to <strong>[theme_option value="client_name"]</strong> unless credited otherwise. It may not be copied, reproduced, republished, downloaded, posted, broadcast or transmitted in any way except for your own personal, non-commercial use. Prior written consent of the copyright holder must be obtained for any other use of material. No part of this site may be distributed or copied for any commercial purpose or financial gain. All intellectual property rights in relation to this website are reserved and owned by <strong>[theme_option value="client_name"]</strong>.
+<h3>Links to other websites and products</h3>
+Links to other websites are provided for the convenience of users. We are unable to provide any warranty regarding the accuracy or completeness of the content of such sites, or the reliability, quality or effectiveness of any products provided through external websites. A link to an external site does not imply an endorsement of the views, information or products provided or held by such websites.
+<h3>Variations</h3>
+We reserve the right to revise and amend this disclaimer notice from time to time and any revised version will be deemed to be applicable from the first date of publication on this website.

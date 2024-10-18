@@ -1,0 +1,37 @@
+.nice-select {
+    height: auto;
+    font-size: 16px;
+    line-height: 1.7;
+    color: $gray-400;
+
+    &:after {
+        @include square(10px);
+        right: 25px;
+        margin-top: -6px;
+    }
+
+    &:hover {
+        border-color: transparent;
+    }
+
+    .list {
+        width: 100%;
+        transition: all $transition-fast;
+    }
+
+    .option {
+        &.focus,
+        &.selected.focus {
+            background-color: transparent;
+        }
+
+        &:hover {
+            &,
+            &.focus,
+            &.selected.focus {
+                background-color: $brand-primary;
+                color: $white;
+            }
+        }
+    }
+}

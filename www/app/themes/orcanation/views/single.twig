@@ -1,0 +1,45 @@
+{% extends "page.twig" %}
+
+{% set contentClass = 'md-8 md-offset-2' %}
+
+{% set appendHeader %}
+    {% if fn('is_single') and post.post_type == 'post' %}
+        {% include 'PageReader/template.twig' %}
+    {% endif %}
+{% endset %}
+
+{% block beforeContentContainer %}
+    <div class="col {{ contentClass }} text-center">
+        <h2 class="h3">{{ post.title }}</h2>
+    </div>
+{% endblock %}
+
+{% block beforeArticleContent %}
+<div class="article-content__meta">
+    <div class="row">
+        <div class="col md-6">
+            <span class="post-content__meta__data bold">{{ post.date }}</span>
+        </div>
+        <div class="col md-6 text-right">
+            <span class="post-content__meta__data bold">{{ post.get_term_links() }}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block afterArticleContent %}
+<div class="article-content__share padding-fluid-small">
+    <p class="bold large article-content__share__title">Share</p>
+    {% for item in post.get_share_link() %}
+        <a href="{{ item.link }}" target="_blank" title="{{ item.title }}" class="article-content__share__link">
+            {{ svg_icon(item.icon) }}
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block afterMain %}
+    {# {% include other_posts.getTemplate() with {
+        module: other_posts.getModule()
+    } only %} #}
+{% endblock %}

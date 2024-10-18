@@ -1,0 +1,255 @@
+.hero-slider {
+    height: 100vh;
+
+    &-clip {
+        // width: 100vw;
+        // height: auto;
+        // overflow: hidden;
+        // clip-path: url('../../img/hero-slider/main.svg');
+        // clip-path: url(#mask);
+        mask-image: url(../../img/hero-slider/hero-main-mask.png);
+        mask-position: 0px 0px;
+        mask-repeat: no-repeat;
+        mask-size: 100%;
+        z-index: 3;
+        position: relative;
+
+        // .swiper {
+        //     &-slide {
+
+        //         &:before,
+        //         &:after {
+        //             content: '';
+        //             position: absolute;
+        //             transform: translate(45vw, 40vh);
+        //             width: 99px;
+        //             height: 99px;
+        //             border-radius: 50%;
+        //             border: 6px solid rgba(#ff00aa, 0.7);
+        //             filter: blur(0);
+        //             transform-origin: 50%;
+        //             z-index: 2;
+        //             scale: 1;
+        //             opacity: 0;
+        //         }
+
+        //         &:hover {
+
+        //             &:before,
+        //             &:after {
+        //                 border-color: transparent;
+        //                 filter: blur(2px);
+        //                 transform: translate(45vw, 40vh) scale(7.5);
+        //                 opacity: 1;
+        //                 transition: 1000ms transform ease, 2100ms blur ease, 900ms border-color ease, 900ms opacity ease;
+        //             }
+
+        //             &:after {
+        //                 transition-delay: 100ms;
+        //             }
+        //         }
+        //     }
+        // }
+
+        &-pagination {
+            position: absolute;
+            width: 20px;
+            height: auto;
+            z-index: 1;
+            top: 40%;
+            right: 64px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            &-item {
+                width: 13px;
+                height: 13px;
+                border: solid 2px white;
+                border-radius: 50%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                &.active {
+                    background-color: white;
+                }
+
+                &::before {
+                    content: '';
+                    width: 35%;
+                    height: 35%;
+                    border-radius: 50%;
+                    background: white;
+                    display: block;
+                    opacity: 1;
+                    transition: 0.3s;
+                }
+            }
+        }
+
+        &-button {
+            &-next {
+                position: absolute;
+                bottom: 10%;
+                z-index: 2;
+                left: 64px;
+                cursor: pointer;
+
+                &:hover {
+                    svg {
+                        path {
+                            stroke: #f47d72;
+                        }
+                    }
+                }
+
+                .svg {
+                    &-1 {
+                        .circle {
+                            display: none;
+                        }
+                    }
+
+                    &-2 {
+                        position: absolute;
+                        left: 0;
+
+                        // animate rotation
+                        @keyframes rotate {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+
+                            100% {
+                                transform: rotate(180deg);
+                            }
+                        }
+
+                        animation: rotate 6s infinite linear;
+
+                        #arrow2 {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-image {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        filter: brightness(0.7);
+
+        // mask-image: url('../../img/hero-slider/canpa.png');
+    }
+
+    &-mask {
+        &-one {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 2;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: flex;
+                position: relative;
+                z-index: 0;
+
+                mask-image: url(../../img/hero-slider/mask-1.png);
+                mask-position: 0px 0px;
+                mask-repeat: no-repeat;
+                mask-size: 100%;
+                filter: brightness(50%);
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 1;
+                }
+            }
+        }
+
+        &-two {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: flex;
+                position: relative;
+                z-index: 0;
+
+                mask-image: url(../../img/hero-slider/mask-2.png);
+                mask-position: 0px 0px;
+                mask-repeat: no-repeat;
+                mask-size: 100%;
+                mask-size: 100%;
+                filter: brightness(50%);
+            }
+        }
+    }
+
+    &-title {
+        position: absolute;
+        top: 62%;
+        width: 100%;
+        padding: 0px 64px;
+        z-index: 4;
+        color: var(--Brand-Colours-Secoundary-Colour---2, #fde8e4);
+        font-family: $kanit;
+        font-size: 120px;
+        font-size: clamp(60px, calc(120 * 100vw / 1440), 220px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 100%;
+        letter-spacing: 4.8px;
+        text-transform: uppercase;
+        pointer-events: none;
+
+        &-top,
+        &-down {
+            width: fit-content;
+            display: flex;
+            gap: 16px;
+
+            .word {
+                display: flex !important;
+                overflow: hidden;
+            }
+        }
+
+        &-down {
+            margin-left: 22%;
+        }
+
+        &-desc {
+            color: var(--Brand-Colours-Secoundary-Colour---2, #fde8e4);
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            width: 28%;
+            position: absolute;
+            top: 20%;
+            right: 28px;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+www/app/themes/**/scss/main.scss
+www/app/themes/**/scss/admin.scss
+www/app/themes/**/scss/editor-style.scss
+www/app/themes/**/scss/login.scss
+www/app/plugins/**/*
+itsec_options.json

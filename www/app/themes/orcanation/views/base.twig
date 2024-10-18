@@ -1,0 +1,50 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{wp_title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{function('wp_head')}}
+    {% block head %}{% endblock %}
+    {% include 'partials/gtm.twig' %}
+</head>
+<body class="{{body_class}}">
+    {% include 'partials/gtm.twig' with { gtmType : 'body' } %}
+    <nav class="keyboard-nav" aria-label="Skip to Navigation">
+        <a href="#content">Skip to Content</a>
+        <a href="#main-content">Skip to Main Content</a>
+        <a href="#main-nav">Skip to Navigation</a>
+        {% block keyboardNav %}{% endblock %}
+    </nav>
+    <a id="top"></a>
+    <div class="browserupgrade" role="alert">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
+
+    {% include 'Header/template.twig' %}
+
+    <div id="content" role="complementary">
+    {% block afterHeader %}{% endblock %}
+    </div>
+
+    <div class="page-wrap" id="main-content">
+        {% block page %}
+            <main>
+                <div class="content-wrap">
+                    {% block beforeMain %}{% endblock %}
+
+                    {% block main %}{% endblock %}
+
+                    {% block afterMain %}{% endblock %}
+                </div>
+            </main>
+            {% block beforeFooter %}{% endblock %}
+
+            {% block footer %}
+                {% include 'Footer/template.twig' %}
+            {% endblock %}
+
+            {% block afterFooter %}
+                {% include 'Searchbox/template.twig' %}
+            {% endblock %}
+        {% endblock %}
+    </div>
+    {{ function('wp_footer') }}
+    {% include 'partials/userback.twig' %}
+</body>
+</html>

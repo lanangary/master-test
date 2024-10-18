@@ -1,0 +1,10 @@
+<form class="newsletter-signup" method="POST" action="" autocomplete="off" id="subscribe-{{ instance }}" data-instance="{{ instance }}" novalidate>
+    <ol class="newsletter-signup__list newsletter-signup__list--fields">
+    {% for field in fields %}
+        {{ field }}
+    {% endfor %}
+    </ol>
+    {% include 'newsletter/buttons.twig' %}
+    {% include 'newsletter/help.twig' %}
+</form>
+<p class="thankyou" style="display: none;" id="thankyou-{{ instance }}"></p>

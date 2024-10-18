@@ -1,0 +1,9 @@
+<ul class="nav">
+	{% for item in menu.get_items %}
+		{% include 'Header/nav-item.twig' with {
+            item: item,
+            level: 0,
+            isicon: isicon
+        } %}
+	{% endfor %}
+</ul>
